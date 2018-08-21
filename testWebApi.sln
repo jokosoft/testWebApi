@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testWebApi", "testWebApi\testWebApi.csproj", "{CC4DE049-078E-4170-B691-350A54BE2C5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModeloPedidos", "ModeloPedidos\ModeloPedidos.csproj", "{C4C8F826-12BC-44A4-B831-61A9D066B3F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC4DE049-078E-4170-B691-350A54BE2C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC4DE049-078E-4170-B691-350A54BE2C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC4DE049-078E-4170-B691-350A54BE2C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC4DE049-078E-4170-B691-350A54BE2C5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4C8F826-12BC-44A4-B831-61A9D066B3F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4C8F826-12BC-44A4-B831-61A9D066B3F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4C8F826-12BC-44A4-B831-61A9D066B3F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4C8F826-12BC-44A4-B831-61A9D066B3F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B35DBBD-6071-47AE-9700-43B525BDD2CD}
+	EndGlobalSection
+EndGlobal

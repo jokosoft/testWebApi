@@ -1,0 +1,107 @@
+﻿
+
+@{
+    ViewBag.Title = "PÁGINA DE TEST";
+}
+
+<div class="jumbotron">
+    <h1>LISTADO DE PRODUCTOS</h1>
+</div>
+
+<table id="gvProductos" class="table table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th data-column-id="Id_prod" data-type="numeric">ID</th>
+            <th data-column-id="Nombre_prod">Nombre</th>
+            <th data-column-id="NombreFamilia">Familia</th>
+            <th data-column-id="Precio" data-type="decimal">Precio</th>
+            <th data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var grid = $("#gvProductos").bootgrid({
+                ajax: true,
+                rowselect: true,
+                ajaxSettings: {
+                    method: "GET",
+                    cache: false
+                },
+                post: function () {
+                    /* To accumulate custom parameter with the request object */
+                    return {
+                        id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+                    };
+                },
+                url: "/api/Productos",
+                searchSettings: {
+                    delay: 1000,
+                    characters: 3
+                },
+                labels: {
+                    all: "ALL",
+                    infos: "Este es el listado de productos",
+                    loading: "Obteniendo datos ...",
+                    noResults: "Ups!! No hay resultados",
+                    refresh: "Recargar los datos",
+                    search: "buscar..."
+                },
+                formatters: {
+                    "commands": function (column, row) {
+                        return "<a class='btn btn-warning btn-xs' href='/Productos/Edit/"
+                            + row.Id_prod + "' >Editar</a> &nbsp; "
+                            + "<a class='btn btn-danger btn-xs' href='Productos/Delete/"
+                            + row.Id_prod + "' >Eliminar</a>"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+@*<table id="tblProductos" class="table table-condensed table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Familia</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+    </table>
+
+    @section scripts
+    {
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tblProductos').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ordering: false,
+                    paging: false,
+                    searching: false,
+                    ajax: "api/Productos",
+                    columns: [
+                        { "data": "Id_prod" },
+                        { "data": "Nombre_prod" },
+                        { "data": "Familia.Nombre" },
+                        { "data": "Precio" }
+                    ]
+                });
+            });
+        </script>
+    }*@

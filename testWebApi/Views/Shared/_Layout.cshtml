@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="es-es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bootgrid.min.css" rel="stylesheet" />
+</head>
+<body>
+   @Html.Partial("_MenuGeneral");
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - <a href="https://play.google.com/store/search?q=jokosoft&hl=es" target="_blank">Jokosoft</a></p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/jquery.bootgrid.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

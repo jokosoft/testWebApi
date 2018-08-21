@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dd686e9867e14e929526953b92af38b7" Name="Diagram1">
+        <EntityTypeShape EntityType="PruebasModel.Familia" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PruebasModel.Pedidos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PruebasModel.Personas" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PruebasModel.Productos" Width="1.5" PointX="7.625" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PruebasModel.ProductosPedidos" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PruebasModel.Restaurantes" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="PruebasModel.FK_Productos_Familia" ManuallyRouted="false" />
+        <AssociationConnector Association="PruebasModel.FK_Pedidos_Personas" ManuallyRouted="false" />
+        <AssociationConnector Association="PruebasModel.FK_Pedidos_Restaurantes" ManuallyRouted="false" />
+        <AssociationConnector Association="PruebasModel.FK_ProductosPedidos_Pedidos" ManuallyRouted="false" />
+        <AssociationConnector Association="PruebasModel.FK_ProductosPedidos_Productos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

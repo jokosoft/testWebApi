@@ -1,0 +1,42 @@
+﻿@model ModeloPedidos.Clases.Productos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Productos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_prod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_prod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Familia.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Familia.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_prod }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

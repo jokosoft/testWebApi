@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/ModeloPedidos/bin/Debug
+/ModeloPedidos/obj/Debug
+/packages
+/testWebApi/bin
+/testWebApi/obj
