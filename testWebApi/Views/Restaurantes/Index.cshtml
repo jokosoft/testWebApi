@@ -1,33 +1,70 @@
-﻿@model IEnumerable<ModeloPedidos.Clases.Restaurantes>
+﻿
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Restaurantes";
 }
 
-<h2>Index</h2>
+<div class="jumbotron">
+    <h1>LISTADO DE RESTAURANTES</h1>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Restaurante)
-        </th>
-        <th></th>
-    </tr>
+<table id="gvRestaurantes" class="table table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th data-column-id="Id_Restaurante" data-type="numeric">ID</th>
+            <th data-column-id="Restaurante">Nombre</th>
+            <th data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Restaurante)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Restaurante }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Restaurante }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Restaurante })
-        </td>
-    </tr>
-}
-
+    </tbody>
 </table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var grid = $("#gvRestaurantes").bootgrid({
+                ajax: true,
+                rowselect: true,
+                ajaxSettings: {
+                    method: "GET",
+                    cache: false
+                },
+                post: function () {
+
+                    return {
+                        id: "71F4F3C9-B3BF-4616-9C57-79100B313A7C"
+                    };
+                },
+                url: "/api/Restaurantes",
+                searchSettings: {
+                    delay: 1000,
+                    characters: 3
+                },
+                labels: {
+                    all: "ALL",
+                    infos: "Este es el listado de restaurantes",
+                    loading: "Obteniendo datos ...",
+                    noResults: "Ups!! No hay resultados",
+                    refresh: "Recargar los datos",
+                    search: "buscar..."
+                },
+                formatters: {
+                    "commands": function (column, row) {
+                        return "<a class='btn btn-warning btn-xs' href='/Restaurantes/Edit/"
+                            + row.Id_Restaurante + "' >Editar</a> &nbsp; "
+                            + "<a class='btn btn-danger btn-xs' href='/Restaurantes/Delete/"
+                            + row.Id_Restaurante + "' >Eliminar</a>"
+                    }
+                }
+            });
+        });
+    </script>
+}

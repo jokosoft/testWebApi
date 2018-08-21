@@ -49,9 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\DAOs\FamiliasDAO.cs" />
+    <Compile Include="Clases\DAOs\PedidosDAO.cs" />
+    <Compile Include="Clases\DAOs\PersonasDAO.cs" />
     <Compile Include="Clases\DAOs\ProductosDAO.cs" />
+    <Compile Include="Clases\DAOs\RestaurantesDAO.cs" />
     <Compile Include="Clases\DTOs\DataTableResponse.cs" />
+    <Compile Include="Clases\DTOs\FamiliaDTO.cs" />
+    <Compile Include="Clases\DTOs\PedidoDTO.cs" />
+    <Compile Include="Clases\DTOs\PersonaDTO.cs" />
     <Compile Include="Clases\DTOs\ProductoDTO.cs" />
+    <Compile Include="Clases\DTOs\RestauranteDTO.cs" />
     <Compile Include="Clases\Familia.cs">
       <DependentUpon>ModeloPedidos.tt</DependentUpon>
     </Compile>

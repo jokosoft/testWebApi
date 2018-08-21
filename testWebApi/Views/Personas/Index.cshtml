@@ -1,39 +1,71 @@
-﻿@model IEnumerable<ModeloPedidos.Clases.Personas>
+﻿
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Personas";
 }
 
-<h2>Index</h2>
+<div class="jumbotron">
+    <h1>LISTADO DE PERSONAS</h1>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.edad)
-        </th>
-        <th></th>
-    </tr>
+<table id="gvPersonas" class="table table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <th data-column-id="id" data-type="numeric">ID</th>
+            <th data-column-id="nombre">Nombre</th>
+            <th data-column-id="edad">Edad</th>
+            <th data-column-id="commands" data-formatter="commands" data-sortable="false">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.edad)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
+    </tbody>
 </table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var grid = $("#gvPersonas").bootgrid({
+                ajax: true,
+                rowselect: true,
+                ajaxSettings: {
+                    method: "GET",
+                    cache: false
+                },
+                post: function () {
+                    return {
+                        id: "5F8DDD8A-640E-4A57-814A-1BBB0E6F5558"
+                    };
+                },
+                url: "/api/Personas",
+                searchSettings: {
+                    delay: 1000,
+                    characters: 3
+                },
+                labels: {
+                    all: "ALL",
+                    infos: "Este es el listado de personas",
+                    loading: "Obteniendo datos ...",
+                    noResults: "Ups!! No hay resultados",
+                    refresh: "Recargar los datos",
+                    search: "buscar..."
+                },
+                formatters: {
+                    "commands": function (column, row) {
+                        return "<a class='btn btn-warning btn-xs' href='/Personas/Edit/"
+                            + row.id + "' >Editar</a> &nbsp; "
+                            + "<a class='btn btn-danger btn-xs' href='/Personas/Delete/"
+                            + row.id + "' >Eliminar</a>"
+                    }
+                }
+            });
+        });
+    </script>
+}

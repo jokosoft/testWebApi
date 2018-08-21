@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ModeloPedidos.Clases;
+using ModeloPedidos.Clases.DAOs;
+using ModeloPedidos.Clases.DTOs;
 
 namespace testWebApi.Controllers.Api
 {
@@ -17,10 +19,53 @@ namespace testWebApi.Controllers.Api
         private PruebasEntities db = new PruebasEntities();
 
         // GET: api/Pedidos
-        public IQueryable<Pedidos> GetPedidos()
+        public IHttpActionResult GetPedidos(string current, string rowCount, string searchPhrase, string id)
         {
-            return db.Pedidos;
+            /*
+             * Formato de la peticion que realiza por ajax el bootgrid
+             current=1 & rowCount=10 & sort[sender]=asc & searchPhrase= & id=b0df282a-0d67-40e5-8558-c9e93b7befed
+
+             */
+
+            int iCurrent = 1;
+            int iRowCount = 10;
+            int iTotalRegistros = 0;
+            string campoOrdenar = string.Empty;
+            string orden = string.Empty;
+
+            // obtiene de los parametros del query string el campo y el sentido de ordenacion
+            var vars = Request.GetQueryNameValuePairs();
+
+            KeyValuePair<string, string> sortValues = vars.FirstOrDefault(x => x.Key.Contains("sort"));
+
+            if (!string.IsNullOrEmpty(sortValues.Value))
+            {
+                campoOrdenar = sortValues.Key.TrimStart("sort.".ToArray());
+                orden = sortValues.Value;
+            }
+
+            // se transforman los valores de paginación
+            Int32.TryParse(current, out iCurrent);
+            Int32.TryParse(rowCount, out iRowCount);
+
+            // obtiene la lista de familias filtrada
+            PedidosDAO item = new PedidosDAO();
+            List<PedidoDTO> lista = new List<PedidoDTO>();
+
+            lista = item.GetListaFiltrada(iCurrent, iRowCount, searchPhrase, campoOrdenar, orden, out iTotalRegistros);
+
+            // se completa el objeto de respuesta
+            DataBootGrid bootGrid = new DataBootGrid()
+            {
+                current = iCurrent,
+                rowsCount = iRowCount,
+                rows = lista.ToArray(),
+                total = iTotalRegistros
+            };
+
+            return Ok(bootGrid);
         }
+
 
         // GET: api/Pedidos/5
         [ResponseType(typeof(Pedidos))]

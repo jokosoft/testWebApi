@@ -11,7 +11,8 @@ namespace ModeloPedidos.Clases
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Pedidos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,9 @@ namespace ModeloPedidos.Clases
         public int Id_pedido { get; set; }
         public string Referencia { get; set; }
         public System.DateTime Fecha { get; set; }
+        [DisplayName("Restaurante")]
         public int FIdRestaurante { get; set; }
+        [DisplayName("Persona que realiza el pedido")]
         public int FIdPersona { get; set; }
     
         public virtual Personas Personas { get; set; }

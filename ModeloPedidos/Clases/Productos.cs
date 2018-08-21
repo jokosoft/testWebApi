@@ -11,15 +11,16 @@ namespace ModeloPedidos.Clases
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     public partial class Productos
     {
         public int Id_prod { get; set; }
+        [DisplayName("Nombre")]
         public string Nombre_prod { get; set; }
+        [DisplayName("Familia")]
         public int FidFamilia { get; set; }
         public decimal Precio { get; set; }
-
-        //public string NombreFamilia { get; set; }
 
         public virtual Familia Familia { get; set; }
 
