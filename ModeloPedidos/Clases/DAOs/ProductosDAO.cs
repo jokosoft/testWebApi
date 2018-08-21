@@ -40,11 +40,11 @@ namespace ModeloPedidos.Clases.DAOs
         /// ordenada por un campo en el sentido indicado
         /// y paginada según los datos pasados
         /// </summary>
-        /// <param name="current"></param>
-        /// <param name="rowCount"></param>
-        /// <param name="searchPhrase"></param>
-        /// <param name="campoOrdenar"></param>
-        /// <param name="orden"></param>
+        /// <param name="current">Pagina que se quiere mostrar</param>
+        /// <param name="rowCount">filas que se quieren mostrar en cada página</param>
+        /// <param name="searchPhrase">Término de búsqueda</param>
+        /// <param name="campoOrdenar">Nombre del campo por qu e quieren ordenar los resultados</param>
+        /// <param name="orden">sentido de la ordenación</param>
         /// <returns></returns>
         public List<ProductoDTO> GetListaFiltrada(int paginaActual, int registrosPagina, string termminoBusqueda,
                                                 string campoOrdenar, string orden, out int iTotalRegistros)
