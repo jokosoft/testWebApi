@@ -4,9 +4,10 @@
     Layout = null;
 }
 
-@using (Html.BeginForm())
-{
-    <div id="idFormNuevoRestaurante">
+<div id="pnlrestauranteForm">
+
+    @using (Ajax.BeginForm("Create", "Restaurantes", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "pnlrestauranteForm" }))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
@@ -19,14 +20,13 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10 text-right">
-                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                    <a class="btn btn-default" onclick="cierraModal('pnlRestaurante');" >Cancelar</a>
+            <div class="form-group text-right">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
-    </div>
-}
+    }
 
-
+</div>

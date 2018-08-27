@@ -168,6 +168,7 @@
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\ProductosPedidosController.cs" />
     <Compile Include="Controllers\RestaurantesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -440,6 +441,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Views\comun.js" />
+    <Content Include="Scripts\Views\Restaurantes.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -478,6 +481,13 @@
     <Content Include="Views\Personas\Details.cshtml" />
     <Content Include="Views\Personas\Edit.cshtml" />
     <Content Include="Views\Personas\Index.cshtml" />
+    <Content Include="Views\ProductosPedidos\Create.cshtml" />
+    <Content Include="Views\ProductosPedidos\Delete.cshtml" />
+    <Content Include="Views\ProductosPedidos\Details.cshtml" />
+    <Content Include="Views\ProductosPedidos\Edit.cshtml" />
+    <Content Include="Views\ProductosPedidos\Index.cshtml" />
+    <Content Include="Views\ProductosPedidos\_listaProductosPedido.cshtml" />
+    <Content Include="Views\Restaurantes\_NuevoRestaurante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

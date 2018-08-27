@@ -10,122 +10,119 @@ using ModeloPedidos.Clases;
 
 namespace testWebApi.Controllers
 {
-    public class RestaurantesController : Controller
+    public class ProductosPedidosController : Controller
     {
         private PruebasEntities db = new PruebasEntities();
+
+        [ChildActionOnly]
+        public ActionResult _listaProductosPedido(int? idPedido)
+        {
+            var lista = db.ProductosPedidos.Where(x => x.FIdPedido == idPedido).ToList();
+            return PartialView("_listaProductosPedido", lista);
+        }
         
-        // GET: Restaurantes/EditarRestaurante
-        public ViewResult NuevoRestaurante()
-        {
-            return View("_NuevoRestaurante", new Restaurantes());
-        }
-
-        // GET: Restaurantes/EditarRestaurante/5
-        public ViewResult EditarRestaurante(int id)
-        {
-            // modo edicion, se recuperan los datos del restaurante
-
-            // pte cambiar por una accion del dao
-            var model = db.Restaurantes.FirstOrDefault(x => x.Id_Restaurante == id);
-
-            return View("_NuevoRestaurante", model);
-        }
-
-        // GET: Restaurantes
+        // GET: ProductosPedidos
         public ActionResult Index()
         {
-            return View();
+            var productosPedidos = db.ProductosPedidos.Include(p => p.Productos);
+            return View(productosPedidos.ToList());
         }
 
-        // GET: Restaurantes/Details/5
+        // GET: ProductosPedidos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurantes restaurantes = db.Restaurantes.Find(id);
-            if (restaurantes == null)
+            ProductosPedidos productosPedidos = db.ProductosPedidos.Find(id);
+            if (productosPedidos == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurantes);
+            return View(productosPedidos);
         }
 
-        // GET: Restaurantes/Create
+        // GET: ProductosPedidos/Create
         public ActionResult Create()
         {
+            ViewBag.FIdProducto = new SelectList(db.Productos, "Id_prod", "Nombre_prod");
             return View();
         }
 
-        // POST: Restaurantes/Create
+        // POST: ProductosPedidos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Restaurante")] Restaurantes restaurantes)
+        public ActionResult Create([Bind(Include = "Id_productosPedido,FIdPedido,FIdProducto,Cantidad")] ProductosPedidos productosPedidos)
         {
             if (ModelState.IsValid)
             {
-                db.Restaurantes.Add(restaurantes);
+                db.ProductosPedidos.Add(productosPedidos);
                 db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            return RedirectToAction("Index");
+            ViewBag.FIdProducto = new SelectList(db.Productos, "Id_prod", "Nombre_prod", productosPedidos.FIdProducto);
+            return View(productosPedidos);
         }
 
-        // GET: Restaurantes/Edit/5
+        // GET: ProductosPedidos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurantes restaurantes = db.Restaurantes.Find(id);
-            if (restaurantes == null)
+            ProductosPedidos productosPedidos = db.ProductosPedidos.Find(id);
+            if (productosPedidos == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurantes);
+            ViewBag.FIdProducto = new SelectList(db.Productos, "Id_prod", "Nombre_prod", productosPedidos.FIdProducto);
+            return View(productosPedidos);
         }
 
-        // POST: Restaurantes/Edit/5
+        // POST: ProductosPedidos/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_Restaurante,Restaurante")] Restaurantes restaurantes)
+        public ActionResult Edit([Bind(Include = "Id_productosPedido,FIdPedido,FIdProducto,Cantidad")] ProductosPedidos productosPedidos)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(restaurantes).State = EntityState.Modified;
+                db.Entry(productosPedidos).State = EntityState.Modified;
                 db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            ViewBag.FIdProducto = new SelectList(db.Productos, "Id_prod", "Nombre_prod", productosPedidos.FIdProducto);
+            return View(productosPedidos);
         }
 
-        // GET: Restaurantes/Delete/5
+        // GET: ProductosPedidos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurantes restaurantes = db.Restaurantes.Find(id);
-            if (restaurantes == null)
+            ProductosPedidos productosPedidos = db.ProductosPedidos.Find(id);
+            if (productosPedidos == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurantes);
+            return View(productosPedidos);
         }
 
-        // POST: Restaurantes/Delete/5
+        // POST: ProductosPedidos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Restaurantes restaurantes = db.Restaurantes.Find(id);
-            db.Restaurantes.Remove(restaurantes);
+            ProductosPedidos productosPedidos = db.ProductosPedidos.Find(id);
+            db.ProductosPedidos.Remove(productosPedidos);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

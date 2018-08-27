@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - MVC 5</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -16,14 +16,12 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - <a href="https://play.google.com/store/search?q=jokosoft&hl=es" target="_blank">Jokosoft</a></p>
+            <p>&copy; @DateTime.Now.Year - <a href="https://play.google.com/store/search?q=jokosoft&hl=es" target="_blank" class="enlaceNeutro">Jokosoft</a></p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/jquery.bootgrid.min.js"></script>
     @RenderSection("scripts", required: false)
 
 </body>

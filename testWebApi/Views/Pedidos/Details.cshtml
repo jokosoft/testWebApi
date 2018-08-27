@@ -1,50 +1,49 @@
 ﻿@model ModeloPedidos.Clases.Pedidos
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle del Pedido";
 }
 
-<h2>Details</h2>
-
+<h2>Detalle del Pedido</h2>
 <div>
-    <h4>Pedidos</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Referencia)
-        </dt>
+    <div class="alert alert-info">
+        <div class="container">
+            <div class="row p-b-10">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-6 negrita text-left">@Html.DisplayNameFor(model => model.Restaurantes.Restaurante)</div>
+                        <div class="col-md-6 text-left">@Html.DisplayFor(model => model.Restaurantes.Restaurante)</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-6 negrita text-left">@Html.DisplayNameFor(model => model.Referencia)</div>
+                        <div class="col-md-6 text-left">@Html.DisplayFor(model => model.Referencia)</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-6 negrita text-left">@Html.DisplayNameFor(model => model.Fecha)</div>
+                        <div class="col-md-6 text-left">@Html.DisplayFor(model => model.Fecha)</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-6 negrita text-left">@Html.DisplayNameFor(model => model.Personas.nombre)</div>
+                        <div class="col-md-6 text-left">@Html.DisplayFor(model => model.Personas.nombre)</div>
+                    </div>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Referencia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Personas.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Personas.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Restaurantes.Restaurante)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Restaurantes.Restaurante)
-        </dd>
-
-    </dl>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_pedido }) |
-    @Html.ActionLink("Back to List", "Index")
+@{
+    Html.RenderAction("_listaProductosPedido", "ProductosPedidos", new { idPedido = Model.Id_pedido });
+
+}
+<p class="text-right">
+    @Html.ActionLink("Nuevo Producto", "Create", "ProductosPedidos", new { id = Model.Id_pedido, @class = "btn btn-primary" })
+    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default"})
 </p>
