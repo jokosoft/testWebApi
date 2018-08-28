@@ -11,8 +11,7 @@ namespace ModeloPedidos.Clases
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Familia
     {
         public int Id { get; set; }

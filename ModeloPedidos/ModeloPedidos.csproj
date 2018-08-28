@@ -114,6 +114,7 @@
       <LastGenOutput>ModeloPedidos.Context.cs</LastGenOutput>
       <DependentUpon>ModeloPedidos.edmx</DependentUpon>
     </Content>
+    <Content Include="Clases\ModeloPedidos.edmx.sql" />
     <Content Include="Clases\ModeloPedidos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloPedidos.edmx</DependentUpon>

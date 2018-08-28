@@ -11,14 +11,12 @@ namespace ModeloPedidos.Clases
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Personas
     {
         public int id { get; set; }
-        [DisplayName("Nombre")]
         public string nombre { get; set; }
-        [DisplayName("Edad")]
         public int edad { get; set; }
+        public string apellidos { get; set; }
     }
 }

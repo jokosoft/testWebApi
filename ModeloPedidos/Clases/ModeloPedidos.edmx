@@ -4,148 +4,148 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PruebasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Familia">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="Pedidos">
-          <Key>
-            <PropertyRef Name="Id_pedido" />
-          </Key>
-          <Property Name="Id_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Referencia" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Fecha" Type="date" Nullable="false" />
-          <Property Name="FIdRestaurante" Type="int" Nullable="false" />
-          <Property Name="FIdPersona" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Personas">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="edad" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Productos">
-          <Key>
-            <PropertyRef Name="Id_prod" />
-          </Key>
-          <Property Name="Id_prod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre_prod" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="FidFamilia" Type="int" Nullable="false" />
-          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ProductosPedidos">
-          <Key>
-            <PropertyRef Name="Id_productosPedido" />
-          </Key>
-          <Property Name="Id_productosPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FIdPedido" Type="int" Nullable="false" />
-          <Property Name="FIdProducto" Type="int" Nullable="false" />
-          <Property Name="Cantidad" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Restaurantes">
-          <Key>
-            <PropertyRef Name="Id_Restaurante" />
-          </Key>
-          <Property Name="Id_Restaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Restaurante" Type="nvarchar" MaxLength="150" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Pedidos_Personas">
-          <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
-          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personas">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Pedidos">
-              <PropertyRef Name="FIdPersona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pedidos_Restaurantes">
-          <End Role="Restaurantes" Type="Self.Restaurantes" Multiplicity="1" />
-          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Restaurantes">
-              <PropertyRef Name="Id_Restaurante" />
-            </Principal>
-            <Dependent Role="Pedidos">
-              <PropertyRef Name="FIdRestaurante" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Productos_Familia">
-          <End Role="Familia" Type="Self.Familia" Multiplicity="1" />
-          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Familia">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Productos">
-              <PropertyRef Name="FidFamilia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductosPedidos_Pedidos">
-          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="1" />
-          <End Role="ProductosPedidos" Type="Self.ProductosPedidos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pedidos">
-              <PropertyRef Name="Id_pedido" />
-            </Principal>
-            <Dependent Role="ProductosPedidos">
-              <PropertyRef Name="FIdPedido" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductosPedidos_Productos">
-          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
-          <End Role="ProductosPedidos" Type="Self.ProductosPedidos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Productos">
-              <PropertyRef Name="Id_prod" />
-            </Principal>
-            <Dependent Role="ProductosPedidos">
-              <PropertyRef Name="FIdProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="PruebasModelStoreContainer">
-          <EntitySet Name="Familia" EntityType="Self.Familia" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductosPedidos" EntityType="Self.ProductosPedidos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Restaurantes" EntityType="Self.Restaurantes" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Pedidos_Personas" Association="Self.FK_Pedidos_Personas">
-            <End Role="Personas" EntitySet="Personas" />
-            <End Role="Pedidos" EntitySet="Pedidos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pedidos_Restaurantes" Association="Self.FK_Pedidos_Restaurantes">
-            <End Role="Restaurantes" EntitySet="Restaurantes" />
-            <End Role="Pedidos" EntitySet="Pedidos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Productos_Familia" Association="Self.FK_Productos_Familia">
-            <End Role="Familia" EntitySet="Familia" />
-            <End Role="Productos" EntitySet="Productos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductosPedidos_Pedidos" Association="Self.FK_ProductosPedidos_Pedidos">
-            <End Role="Pedidos" EntitySet="Pedidos" />
-            <End Role="ProductosPedidos" EntitySet="ProductosPedidos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductosPedidos_Productos" Association="Self.FK_ProductosPedidos_Productos">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="ProductosPedidos" EntitySet="ProductosPedidos" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="PruebasModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="PruebasModelStoreContainer">
+    <EntitySet Name="Familia" EntityType="PruebasModel.Store.Familia" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pedidos" EntityType="PruebasModel.Store.Pedidos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Personas" EntityType="PruebasModel.Store.Personas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Productos" EntityType="PruebasModel.Store.Productos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductosPedidos" EntityType="PruebasModel.Store.ProductosPedidos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Restaurantes" EntityType="PruebasModel.Store.Restaurantes" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Productos_Familia" Association="PruebasModel.Store.FK_Productos_Familia">
+      <End Role="Familia" EntitySet="Familia" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedidos_Personas" Association="PruebasModel.Store.FK_Pedidos_Personas">
+      <End Role="Personas" EntitySet="Personas" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedidos_Restaurantes" Association="PruebasModel.Store.FK_Pedidos_Restaurantes">
+      <End Role="Restaurantes" EntitySet="Restaurantes" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductosPedidos_Pedidos" Association="PruebasModel.Store.FK_ProductosPedidos_Pedidos">
+      <End Role="Pedidos" EntitySet="Pedidos" />
+      <End Role="ProductosPedidos" EntitySet="ProductosPedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductosPedidos_Productos" Association="PruebasModel.Store.FK_ProductosPedidos_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="ProductosPedidos" EntitySet="ProductosPedidos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Familia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Descripcion" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Pedidos">
+    <Key>
+      <PropertyRef Name="Id_pedido" />
+    </Key>
+    <Property Name="Id_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Referencia" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="FIdRestaurante" Type="int" Nullable="false" />
+    <Property Name="FIdPersona" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="edad" Type="int" Nullable="false" />
+    <Property Name="apellidos" Type="nvarchar" Nullable="true" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="Id_prod" />
+    </Key>
+    <Property Name="Id_prod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_prod" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="FidFamilia" Type="int" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ProductosPedidos">
+    <Key>
+      <PropertyRef Name="Id_productosPedido" />
+    </Key>
+    <Property Name="Id_productosPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIdPedido" Type="int" Nullable="false" />
+    <Property Name="FIdProducto" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Restaurantes">
+    <Key>
+      <PropertyRef Name="Id_Restaurante" />
+    </Key>
+    <Property Name="Id_Restaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Restaurante" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <Association Name="FK_Productos_Familia">
+    <End Role="Familia" Type="PruebasModel.Store.Familia" Multiplicity="1" />
+    <End Role="Productos" Type="PruebasModel.Store.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Familia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="FidFamilia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedidos_Personas">
+    <End Role="Personas" Type="PruebasModel.Store.Personas" Multiplicity="1" />
+    <End Role="Pedidos" Type="PruebasModel.Store.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="FIdPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedidos_Restaurantes">
+    <End Role="Restaurantes" Type="PruebasModel.Store.Restaurantes" Multiplicity="1" />
+    <End Role="Pedidos" Type="PruebasModel.Store.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurantes">
+        <PropertyRef Name="Id_Restaurante" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="FIdRestaurante" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductosPedidos_Pedidos">
+    <End Role="Pedidos" Type="PruebasModel.Store.Pedidos" Multiplicity="1" />
+    <End Role="ProductosPedidos" Type="PruebasModel.Store.ProductosPedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedidos">
+        <PropertyRef Name="Id_pedido" />
+      </Principal>
+      <Dependent Role="ProductosPedidos">
+        <PropertyRef Name="FIdPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductosPedidos_Productos">
+    <End Role="Productos" Type="PruebasModel.Store.Productos" Multiplicity="1" />
+    <End Role="ProductosPedidos" Type="PruebasModel.Store.ProductosPedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_prod" />
+      </Principal>
+      <Dependent Role="ProductosPedidos">
+        <PropertyRef Name="FIdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PruebasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -177,6 +177,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="edad" Type="Int32" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -297,68 +298,68 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PruebasModelStoreContainer" CdmEntityContainer="PruebasEntities">
-          <EntitySetMapping Name="Familia">
-            <EntityTypeMapping TypeName="PruebasModel.Familia">
-              <MappingFragment StoreEntitySet="Familia">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pedidos">
-            <EntityTypeMapping TypeName="PruebasModel.Pedidos">
-              <MappingFragment StoreEntitySet="Pedidos">
-                <ScalarProperty Name="Id_pedido" ColumnName="Id_pedido" />
-                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="FIdRestaurante" ColumnName="FIdRestaurante" />
-                <ScalarProperty Name="FIdPersona" ColumnName="FIdPersona" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Personas">
-            <EntityTypeMapping TypeName="PruebasModel.Personas">
-              <MappingFragment StoreEntitySet="Personas">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="edad" ColumnName="edad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Productos">
-            <EntityTypeMapping TypeName="PruebasModel.Productos">
-              <MappingFragment StoreEntitySet="Productos">
-                <ScalarProperty Name="Id_prod" ColumnName="Id_prod" />
-                <ScalarProperty Name="Nombre_prod" ColumnName="Nombre_prod" />
-                <ScalarProperty Name="FidFamilia" ColumnName="FidFamilia" />
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductosPedidos">
-            <EntityTypeMapping TypeName="PruebasModel.ProductosPedidos">
-              <MappingFragment StoreEntitySet="ProductosPedidos">
-                <ScalarProperty Name="Id_productosPedido" ColumnName="Id_productosPedido" />
-                <ScalarProperty Name="FIdPedido" ColumnName="FIdPedido" />
-                <ScalarProperty Name="FIdProducto" ColumnName="FIdProducto" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Restaurantes">
-            <EntityTypeMapping TypeName="PruebasModel.Restaurantes">
-              <MappingFragment StoreEntitySet="Restaurantes">
-                <ScalarProperty Name="Id_Restaurante" ColumnName="Id_Restaurante" />
-                <ScalarProperty Name="Restaurante" ColumnName="Restaurante" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PruebasModelStoreContainer" CdmEntityContainer="PruebasEntities">
+    <EntitySetMapping Name="Familia">
+      <EntityTypeMapping TypeName="IsTypeOf(PruebasModel.Familia)">
+        <MappingFragment StoreEntitySet="Familia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedidos">
+      <EntityTypeMapping TypeName="IsTypeOf(PruebasModel.Pedidos)">
+        <MappingFragment StoreEntitySet="Pedidos">
+          <ScalarProperty Name="Id_pedido" ColumnName="Id_pedido" />
+          <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="FIdRestaurante" ColumnName="FIdRestaurante" />
+          <ScalarProperty Name="FIdPersona" ColumnName="FIdPersona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personas">
+      <EntityTypeMapping TypeName="IsTypeOf(PruebasModel.Personas)">
+        <MappingFragment StoreEntitySet="Personas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="IsTypeOf(PruebasModel.Productos)">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="Id_prod" ColumnName="Id_prod" />
+          <ScalarProperty Name="Nombre_prod" ColumnName="Nombre_prod" />
+          <ScalarProperty Name="FidFamilia" ColumnName="FidFamilia" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductosPedidos">
+      <EntityTypeMapping TypeName="IsTypeOf(PruebasModel.ProductosPedidos)">
+        <MappingFragment StoreEntitySet="ProductosPedidos">
+          <ScalarProperty Name="Id_productosPedido" ColumnName="Id_productosPedido" />
+          <ScalarProperty Name="FIdPedido" ColumnName="FIdPedido" />
+          <ScalarProperty Name="FIdProducto" ColumnName="FIdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurantes">
+      <EntityTypeMapping TypeName="IsTypeOf(PruebasModel.Restaurantes)">
+        <MappingFragment StoreEntitySet="Restaurantes">
+          <ScalarProperty Name="Id_Restaurante" ColumnName="Id_Restaurante" />
+          <ScalarProperty Name="Restaurante" ColumnName="Restaurante" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -372,7 +373,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>

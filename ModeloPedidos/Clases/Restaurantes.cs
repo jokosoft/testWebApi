@@ -11,14 +11,10 @@ namespace ModeloPedidos.Clases
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Restaurantes
     {
         public int Id_Restaurante { get; set; }
-        [Required]
-        [MaxLength(150)]
         public string Restaurante { get; set; }
     }
 }
